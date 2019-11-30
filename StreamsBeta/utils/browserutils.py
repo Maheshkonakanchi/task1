@@ -1,12 +1,13 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+
 
 class Browser:
     def openBrowser(self):
-        self.driver=webdriver.Chrome(executable_path="D:\\software\\selenium drivers\\chromedriver.exe")
+        self.driver = webdriver.Chrome(executable_path="D:\\software\\selenium drivers\\chromedriver.exe")
         self.driver.maximize_window()
         self.driver.get("https://gostreams.beta-wspbx.com/")
         return self.driver
+
 
 """
     def openothertab(self,driver):

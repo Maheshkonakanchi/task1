@@ -4,12 +4,11 @@ from utils import xlutils
 
 file = "C:\\Users\\Mahesh.K\\PycharmProjects\\git hub projects\\StreamsBeta\\inputfiles\\userdetails.xlsx"
 sheetname="users_sheet"
+screenshotpath="C:\\Users\\Mahesh.K\\PycharmProjects\\git hub projects\\StreamsBeta\\inputfiles\\screenshots\\"+str(time)+".png"
 
 class userinfo:
 
     def getuserdetails(self,driver):
-        #XLutils.getrowcount(file,sheetname)
-        #driver.close()
         rows = xlutils.getrowcount(file ,sheetname)
         #colu = xlutils.getcolumncount(file, sheetname)
 
@@ -22,17 +21,18 @@ class userinfo:
             driver.find_element_by_xpath("//input[@id='password']").send_keys(password)
             driver.find_element_by_xpath("//input[@id='login_button']").click()
             time.sleep(15)
-            print(driver.title)
+            print("title of page ::::" + driver.title)
             if driver.current_url == "https://gostreams.beta-wspbx.com/sloader/home.jsp":
-                print("Pass")
+                driver.get_screenshot_as_file(screenshotpath)
+                print("Test case Pass")
                 xlutils.writedata(file, sheetname, r, 5, "Pass")
                 driver.find_element_by_xpath("//a[@id='streams_menu_icon_area']").click()
                 driver.find_element_by_xpath("//li[contains(text(),'Logout')]").click()
                 time.sleep(15)
-                print("**************************")
+                print("**************Pass****************")
             else:
-                print("Fail")
+                print("Test case Fail")
                 xlutils.writedata(file, sheetname, r, 5, "fail")
                 time.sleep(10)
                 driver.get("https://gostreams.beta-wspbx.com/")
-                print("**************************")
+                print("**************Fail*************")

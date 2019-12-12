@@ -20,6 +20,3 @@ def writedata(file,sheetname,rownum,columnno,data):
         sheet = workbook.get_sheet_by_name(sheetname)
         sheet.cell(row=rownum, column=columnno).value = data
         workbook.save(file)
-
-def getrows():
-        print('getrows is calling ......')
